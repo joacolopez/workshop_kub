@@ -30,21 +30,45 @@ El Engine de docker es quien nos va a permitir a nosotros generar nuestros propi
 
 Para que vean como funcionan los contenedores, en vez de seguir hablando pavadas, vamos a los bifes.
 
-1. Instalamos Docker
+
+## Evitar conflicto de paquetes
+
+Para esto corremos el siguiente comando:
 ```bash
-  $ sudo yum install -y yum-utils
-  $ sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
-  $ sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  $ for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 ```
-2. Levantamos el servicio necesario para correr contenedores 
+
+## Instalacion para Debian-based
+
+1. Seteamos el repo apt para docker
+```bash
+  # Add Docker's official GPG key:
+  sudo apt-get update
+  sudo apt-get install ca-certificates curl
+  sudo install -m 0755 -d /etc/apt/keyrings
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+  # Add the repository to Apt sources:
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  sudo apt-get update
+```
+2. Instalamos los paquetes de docker
+```bash
+  $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+``` 
+3. Levantamos el servicio necesario para correr contenedores 
 ```bash
   $ sudo systemctl start docker
 ``` 
-3. Corremos nuestro primer contenedor 
+4. Corremos nuestro primer contenedor 
 ```bash
   $ sudo docker run -p 8080:80 juliancillo/credi-demo
 ```
-4. Accedemos al localhost:8080 y deberiamos ver una interfaz web parecida a esta.  
+5. Accedemos al localhost:8080 y deberiamos ver una interfaz web parecida a esta.  
   
 ![](./demo.png)  
   
