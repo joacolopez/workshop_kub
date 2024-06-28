@@ -35,6 +35,7 @@ Crear un archivo llamado `requirements.txt` con el siguiente contenido:
 
 ```
 Flask==2.0.1
+Werkzeug==2.0.1
 ```
 
 ### 3. Crear el archivo `Dockerfile`
@@ -74,7 +75,7 @@ cd ~/path/to/exercise/
 docker build -t flask-app .
 
 # Run docker image
-docker run -p 5000:5000 flask-app
+docker run -d -p 5000:5000 flask-app
 ```
 
 ### 5. Probar que la aplicación está funcionando correctamente
