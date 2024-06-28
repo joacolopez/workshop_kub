@@ -16,6 +16,17 @@ Este ejercicio tiene como objetivo crear un contenedor Docker que sirva una pág
 - Docker instalado en tu máquina.
 - Bash shell (para ejecutar los scripts `deploy.sh` y `test.sh`).
 
+## Estructura del ejercicio
+
+```
+~/path/to/exercise/
+├── Dockerfile
+├── README.md
+├── deploy.sh
+├── index.html
+└── test.sh
+```
+
 ## Paso a paso
 
 ### Paso 1: Crear el archivo `index.html`
