@@ -1,7 +1,3 @@
-Claro, aquí tienes el README actualizado con la aclaración de que el script "deploy.sh" automatiza todo el despliegue:
-
----
-
 # Aplicación CRUD Simple con Docker
 
 Este proyecto configura una aplicación CRUD simple utilizando NGINX, PHP y MySQL, orquestado con Docker Compose.
