@@ -53,7 +53,7 @@ Ejemplo de uso:
 ./deploy.sh -s my_stack -m 5.7 -n alpine -p 8.1
 ```
 
-DISCLAIMER: El input de versiones está WIP. Falta resolver que los templates se configuren correctamente ingresando como variable la versión de php. De momento por default utiliza 8.1. 
+**DISCLAIMER**: El input de versiones está WIP. Me falta resolver que los templates se configuren correctamente ingresando como variable la versión de php deseada por el usuario. De momento por default utiliza 8.1.
 
 ### 3. Acceder a la Aplicación
 
