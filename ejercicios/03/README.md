@@ -1,4 +1,4 @@
-# Aplicación CRUD Simple con Docker
+# Aplicación CRUD simple con Docker
 
 Este proyecto configura una aplicación CRUD simple utilizando NGINX, PHP y MySQL, orquestado con Docker Compose.
 
