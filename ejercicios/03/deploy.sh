@@ -22,7 +22,7 @@ function check_docker {
 
 # Verify if Docker Compose is installed
 function check_docker_compose {
-    if ! command -v docker-compose &> /dev/null; then
+    if ! command -v docker compose &> /dev/null; then
         echo "Docker Compose is not installed. Please install Docker Compose and try again."
         exit 1
     fi
@@ -372,26 +372,26 @@ EOL
 
 # Stop and remove existing containers but keep volumes
 echo "Stopping and removing existing containers but keeping volumes..."
-docker-compose -f ${STACK_NAME}/docker-compose.yml down
+docker compose -f ${STACK_NAME}/docker-compose.yml down
 
 # Build images to reflect changes
 echo "Building images..."
-docker-compose -f ${STACK_NAME}/docker-compose.yml build
+docker compose -f ${STACK_NAME}/docker-compose.yml build
 
 # Deploy services with Docker Compose
 echo "Deploying services with Docker Compose..."
-docker-compose -f ${STACK_NAME}/docker-compose.yml up -d
+docker compose -f ${STACK_NAME}/docker-compose.yml up -d
 
 # Wait for the MySQL server to be ready
 echo "Waiting for MySQL server to be ready..."
-until docker exec -i $(docker-compose -f ${STACK_NAME}/docker-compose.yml ps -q db) mysqladmin ping -h"db" --silent; do
+until docker exec -i $(docker compose -f ${STACK_NAME}/docker-compose.yml ps -q db) mysqladmin ping -h"db" --silent; do
     echo "Waiting for the database connection..."
     sleep 10
 done
 
 # Create the users table in the database if it does not exist
 echo "Creating users table in the database if it does not exist..."
-docker exec -i $(docker-compose -f ${STACK_NAME}/docker-compose.yml ps -q db) mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} -h db ${MYSQL_DATABASE} <<EOF
+docker exec -i $(docker compose -f ${STACK_NAME}/docker-compose.yml ps -q db) mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} -h db ${MYSQL_DATABASE} <<EOF
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
